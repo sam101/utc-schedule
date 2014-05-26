@@ -1,7 +1,7 @@
 utc-schedule
 ============
 
-This repository, initially developed for a IA04 UTC project, contains some java stuff to retrieve UTC's schedules as JSON format and get some nice data about the rooms / UVs .  The code might be dirty in some classes, but you're free to rewrite it if you have the courage.
+This repository, initially developed for a IA04 UTC project, contains some java stuff to retrieve UTC's schedules as JSON format and get some nice data about the rooms / UVs . 
 
 It uses Jackson for the JSON processing and the raw HTTP classes from the JDK to do the HTTP requests (which are a pain in the ass).
 
