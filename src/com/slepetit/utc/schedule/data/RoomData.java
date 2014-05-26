@@ -23,7 +23,9 @@ public class RoomData {
 
 	public int[][] slots = new int[6][48];
 	public int usedSlots;
-		
+	
+	public String[][] uvsSlots = new String[6][48];	
+	
 	public RoomData(String name) {
 		this.name = name;
 	}
@@ -40,15 +42,17 @@ public class RoomData {
 					uvCount++; // TODO: a solution based on uvs.size() would be smarter.
 					uvs.add(s.uv);
 				}
-			}
-			int beginSlot = getSlot(s.bh, s.bm);
-			int endSlot = getSlot(s.eh, s.em);
-			for (int i = beginSlot; i <= endSlot; i++) {
-				if (slots[s.day][i] == 0) {
-					usedSlots++;
+				int beginSlot = getSlot(s.bh, s.bm);
+				int endSlot = getSlot(s.eh, s.em);
+				for (int i = beginSlot; i <= endSlot; i++) {
+					if (slots[s.day][i] == 0) {
+						usedSlots++;
+					}
+					uvsSlots[s.day][i] = s.uv;
+					slots[s.day][i]++;
 				}
-				slots[s.day][i]++;
 			}
+
 		}
 	}
 
