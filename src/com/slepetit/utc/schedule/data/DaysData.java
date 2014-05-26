@@ -8,6 +8,8 @@ public class DaysData {
 	public int uvCount;
 	public Set<String> uvs = new TreeSet<>();
 	
+	public int[] slots = new int[48];
+	
 	public DaysData(int day) {
 		this.day = day;
 	}
@@ -19,7 +21,13 @@ public class DaysData {
 					uvCount++;
 					uvs.add(s.uv);
 				}
+				int beginSlot = Slot.getSlot(s.bh, s.bm);
+				int endSlot = Slot.getSlot(s.eh, s.em);
+				for (int i = beginSlot; i <= endSlot; i++) {
+					slots[i]++;
+				}
 			}
+
 		}
 	}
 }
