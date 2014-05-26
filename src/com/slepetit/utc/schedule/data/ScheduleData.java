@@ -12,7 +12,7 @@ public class ScheduleData {
 	private List<UserData> users = new ArrayList<UserData>();	
 	private Map<String, UVData> uvs = new TreeMap<>();
 	private Map<String, RoomData> rooms = new TreeMap<>();
-	private Set<String> semesters = new TreeSet<>();
+	private Map<String, Integer> semesters = new TreeMap<>(); // TODO: We should use a Multiset here.
 	private DaysData[] days = new DaysData[6];
 
 	public ScheduleData() {
@@ -24,7 +24,10 @@ public class ScheduleData {
 	
 	public void add(UserData userData) {
 		users.add(userData);
-		semesters.add(userData.fullSemester);
+		if (! semesters.containsKey(userData.fullSemester)) {
+			semesters.put(userData.fullSemester, 1);
+		}
+		semesters.put(userData.fullSemester, semesters.get(userData.fullSemester) + 1);
 		extractUVData(userData);
 		extractRoomData(userData);
 		
@@ -79,13 +82,15 @@ public class ScheduleData {
 		this.rooms = rooms;
 	}
 
-	public Set<String> getSemesters() {
+	public Map<String, Integer> getSemesters() {
 		return semesters;
 	}
 
-	public void setSemesters(Set<String> semesters) {
+
+	public void setSemesters(Map<String, Integer> semesters) {
 		this.semesters = semesters;
 	}
+
 
 	public Map<String, UVData> getUvs() {
 		return uvs;
